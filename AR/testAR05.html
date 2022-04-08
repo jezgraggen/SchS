@@ -1,0 +1,28 @@
+<!doctype HTML>
+<html>
+        <script src="https://aframe.io/releases/1.0.4/aframe.min.js"></script>
+        <script src="https://raw.githack.com/AR-js-org/AR.js/master/aframe/build/aframe-ar.js"></script>
+        <script src="https://raw.githack.com/donmccurdy/aframe-extras/master/dist/aframe-extras.loaders.min.js"></script>
+        <script src="https://raw.githack.com/AR-js-org/studio-backend/master/src/modules/marker/tools/gesture-detector.js"></script>
+        <script src="https://raw.githack.com/AR-js-org/studio-backend/master/src/modules/marker/tools/gesture-handler.js"></script>
+<!--<script src="https://makerspace-giessen.de/objects/aframe-v1.0.4.min.js"></script>
+<script src="https://makerspace-giessen.de/objects/aframe-ar.min.js"></script> -->
+  <body style='margin : 0px; overflow: hidden;'>
+    <a-scene embedded arjs="trackingMethod: best; debugUIEnabled: false; detectionMode: mono_and_matrix; matrixCodeType: 4x4_bch_13_9_3; maxDetectionRate: 10; sourceWidth:1280; sourceHeight:960; displayWidth: 1280; displayHeight: 960;">
+         
+   <!--
+      <a-entity light="type: ambient; color: #fff; intensity: 0.8"></a-entity> 
+      <a-entity light="type: directional; color: #FFF; intensity: 0.6" position="-1 1 1"></a-entity>
+      <a-entity light="type: directional; color: #FFF; intensity: 0.6" position="1 1 1"></a-entity>  
+      <a-entity light="type: directional; color: #FFF; intensity: 0.6" position="1 -1 1"></a-entity> 
+      <a-entity light="type: directional; color: #FFF; intensity: 0.6" position="-1 -1 1"></a-entity>    
+   -->  
+               
+      <a-marker type="barcode" value="0">
+       <!--<a-entity gltf-model="url(https://jezgraggen.github.io/AR-Studio/assets/asset.glb)" scale="1 1 1"></a-entity> -->
+       <a-entity obj-model="obj: url(https://jezgraggen.github.io/SchS/AR/tinker.obj); mtl: url(https://jezgraggen.github.io/SchS/AR/obj.mtl)" scale="0.5 0.5 0.5"></a-entity> -->
+      </a-marker>  
+      <a-entity camera></a-entity>
+    </a-scene>
+  </body>
+</html>
