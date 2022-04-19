@@ -42,11 +42,32 @@
       width: 4em;
       height: 2em;
     }
+    
+      .arjs-loader {
+    height: 100%;
+    width: 100%;
+    position: absolute;
+    top: 0;
+    left: 0;
+    background-color: rgba(0, 0, 0, 0.8);
+    z-index: 9999;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .arjs-loader div {
+    text-align: center;
+    font-size: 1.25em;
+    color: white;
+  }
   </style>
   
   <!-- Hier folgt der sichtbare Teil der Seite --> 
   <body style='margin : 0px; overflow: hidden;'>
-    
+      <div class="arjs-loader">
+         <div>Loading, please wait...</div>
+      </div>
     <!-- Hier wird der Button eingefügt -> ist optional, wenn nicht gewünscht: 
          die drei Zeichen am Ende der Zeile (- - >) hinter </div> verschieben: -->
       <div class="buttons">
@@ -116,13 +137,12 @@
           url="https://jezgraggen.github.io/AR-Studio/assets/MarkerMoon"
           smooth="true"
           smoothCount="10"
-          smoothTolerance=".01"
+          smoothTolerance="0.01"
           smoothThreshold="5"
-        > <a-entity
+        > 
             <a-image src="https://jezgraggen.github.io/AR-Studio/assets/riff_mit_korallen.jpg" scale="1 1 1" position="0 0 0" rotation="90 0 180"></a-image>
-            <!--gltf-model="https://jezgraggen.github.io/AR-Studio/assets/asset.glb"-->
-          >>
-         </a-entity>
+            <a-entity gltf-model="https://jezgraggen.github.io/AR-Studio/assets/asset.glb"></a-entity>
+            
         </a-nft>
 
       <a-entity camera></a-entity>
