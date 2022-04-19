@@ -62,7 +62,7 @@
       <a-marker type="barcode" value="0">
        <!-- pro Marker können mehrere Objekte geladen werden. 
             Hier ein Beispiel mit einem .obj -->
-        <a-entity obj-model="obj: url(/SchS/RDZ/Modelle/000.obj) mtl: url(/SchS/RDZ/Modelle/000.mtl)"  
+        <a-entity obj-model="obj: url(/SchS/RDZ/Modelle/000.obj); mtl: url(/SchS/RDZ/Modelle/000.mtl)"  
                  scale="0.1 0.1 0.1"               
                  rotation="0 0 0"
                  class="clickable" 
@@ -116,13 +116,7 @@
 
 <!-- Hier ein Beispiel mit einem Video --> 
       <a-marker type="barcode" value="5"> 
-       <a-entity
-          geometry="primitive: plane; height: 2; width: 2"
-          position="0 0 0"
-          rotation="-90 0 0"
-          material="color: green"
-          text="value: Fünf"
-       ></a-entity> 
+        <a-video preload="metadata" src="https://jezgraggen.github.io/AR-Studio/assets/CoolTricks__aL29yNv_460sv_ZachKing.mp4" width="2" height="1.2" rotation="90 0 0"
       </a-marker>  
             
       <a-entity camera></a-entity>
