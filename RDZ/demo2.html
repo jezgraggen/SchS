@@ -87,7 +87,7 @@
             Hier ein Beispiel mit einem .obj -->
         <a-entity obj-model="obj: url(/SchS/RDZ/Modelle/000.obj); mtl: url(/SchS/RDZ/Modelle/000.mtl)"  
                  scale="0.1 0.1 0.1"               
-                 rotation="0 0 0"
+                 rotation="90 0 0"
                  class="clickable" 
                  gesture-handler="minScale: 0.25; maxScale: 10" 
         ></a-entity>     
@@ -97,7 +97,7 @@
      Hier ein Beispiel mit einem .glb --> 
       <a-marker type="barcode" value="1">      
         <a-entity gltf-model="url(/SchS/RDZ/Modelle/001.glb)" 
-                 rotation="0 0 90"
+                 rotation="0 0 0"
                  scale="0.1 0.1 0.1"
                  class="clickable" 
                  gesture-handler="minScale: 0.25; maxScale: 10" 
@@ -117,13 +117,7 @@
  
 <!-- Hier ein Beispiel mit einem Bild --> 
       <a-marker type="barcode" value="3"> 
-       <a-entity
-          geometry="primitive: plane; height: 1; width: 1"
-          position="0 0 0"
-          rotation="-90 0 0"
-          material="color: blue"
-          text="value: Drei"
-       ></a-entity> 
+    <a-image src="https://jezgraggen.github.io/AR-Studio/assets/riff_mit_korallen.jpg" scale="1 1 1" position="0 0 0" rotation="90 0 180"></a-image>
       </a-marker>   
             
 <!-- Hier ein Beispiel mit einem Video --> 
