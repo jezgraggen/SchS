@@ -62,7 +62,7 @@
       <a-marker type="barcode" value="0">
        <!-- pro Marker können mehrere Objekte geladen werden. 
             Hier ein Beispiel mit einem .obj -->
-        <a-entity obj-model="obj: url(/SchS/RDZ/Modelle/00.obj)"  
+        <a-entity obj-model="obj: url(/SchS/RDZ/Modelle/000.obj) mtl: url(/SchS/RDZ/Modelle/000.mtl)"  
                  scale="0.1 0.1 0.1" <!-- Skalierung - besser klein anfangen -->              
                  rotation="0 90 0" <!-- x y z -> "nicken, wedeln, drehen" -->
                <!-- class und gesture machen das Objekt steuerbar -> ist empfohlen -->
@@ -72,9 +72,9 @@
       </a-marker>         
 
 <!-- Hier kommt ein neuer Marker / neues Objekt: 
-     Hier ein Beispiel mit einem .gltf --> 
+     Hier ein Beispiel mit einem .glb --> 
       <a-marker type="barcode" value="1">      
-        <a-entity gltf-model="url(/SchS/RDZ/Modelle/01.gltf)" 
+        <a-entity gltf-model="url(/SchS/RDZ/Modelle/001.glb)" 
                  rotation="0 0 90"
                  scale="0.1 0.1 0.1"
                  class="clickable" 
@@ -86,7 +86,7 @@
       <a-marker type="barcode" value="2"> 
        <a-entity
           geometry="primitive: plane; height: 1; width: 1"
-          position="0 0 -1"
+          position="0 0 0"
           rotation="-90 0 0"
           material="color: green"
           text="value: Zwei"
@@ -97,7 +97,7 @@
       <a-marker type="barcode" value="3"> 
        <a-entity
           geometry="primitive: plane; height: 1; width: 1"
-          position="0 0 -1"
+          position="0 0 0"
           rotation="-90 0 0"
           material="color: blue"
           text="value: Drei"
@@ -108,7 +108,7 @@
       <a-marker type="barcode" value="4"> 
        <a-entity
           geometry="primitive: plane; height: 1; width: 1"
-          position="0 0 -1"
+          position="0 0 0"
           rotation="-90 0 0"
           material="color: red"
           text="value: Vier"
@@ -119,7 +119,7 @@
       <a-marker type="barcode" value="5"> 
        <a-entity
           geometry="primitive: plane; height: 2; width: 2"
-          position="0 0 -1"
+          position="0 0 0"
           rotation="-90 0 0"
           material="color: green"
           text="value: Fünf"
