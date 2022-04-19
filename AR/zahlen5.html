@@ -81,6 +81,7 @@
       
       <a-marker type="barcode" value="2"> 
        <a-entity obj-model="obj: url(/SchS/AR/1.obj)" 
+                 scale="0.1 0.1 0.1"
                  class="clickable"
                  gesture-handler="minScale: 0.5; maxScale: 8"
        ></a-entity> 
@@ -88,6 +89,7 @@
             
       <a-marker type="barcode" value="5"> 
        <a-entity obj-model="obj: url(/SchS/AR/1.obj)" 
+              
                  position="-1 0 0"
                  rotation="0 90 0"
                  scale="0.1 0.1 0.1"
@@ -101,7 +103,7 @@
          ></a-entity> 
      <a-entity
   geometry="primitive: plane; height: auto; width: auto"
-  rotation="90 0 0"
+  rotation="-90 0 0"
   material="color: blue"
   text="width: 3; value: Vier."></a-entity>
       </a-marker>  
@@ -110,7 +112,7 @@
 <a-entity
   geometry="primitive: plane; height: 2; width: 2"
   position="0 0 -1"
-  rotation="0 -90 0"
+  rotation="-90 0 0"
   material="color: blue"
   text="width: 3; value: This text will be 3 units wide."></a-entity>
       </a-marker> 
@@ -128,7 +130,7 @@
 <a-entity
   geometry="primitive: plane; height: 2; width: 2"
   position="0 0 -1"
-  rotation="-90 0 -90"
+  rotation="-90 0 0"
   material="color: green"
   text="width: 1; value: This text will be 1 unit wide."></a-entity>
       </a-marker> 
