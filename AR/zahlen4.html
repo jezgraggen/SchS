@@ -46,7 +46,7 @@
          <button class="say-hi-button"></button>
       </div>
     
-        AFRAME.registerComponent('log', {
+   <!--     AFRAME.registerComponent('log', {
                 schema: {type: 'string'},
                 init: function () {
                 var stringToLog = this.data;
@@ -58,8 +58,12 @@
     <a-scene log="Hello, Scene!">
         <a-box log="Hello, Box!"></a-box>
     </a-scene>
-    
-    <a-scene embedded arjs="trackingMethod: best; debugUIEnabled: false; detectionMode: mono_and_matrix; matrixCodeType: 3x3;">
+    -->    
+    <a-scene embedded arjs="trackingMethod: best; debugUIEnabled: false; detectionMode: mono_and_matrix; matrixCodeType: 3x3;"        
+        vr-mode-ui="enabled: false"
+        gesture-detector
+        id="scene"
+    >
 
       <a-marker type="barcode" value="0">
        <a-entity obj-model="obj: url(/SchS/AR/2.obj)" 
@@ -91,6 +95,8 @@
                  position="1 0 0"
                  rotation="90 0 0"
                  scale="0.1 0.1 0.1"
+                 class="clickable"
+                 gesture-handler="minScale: 0.25; maxScale: 10"
          ></a-entity>   
       </a-marker>  
       
