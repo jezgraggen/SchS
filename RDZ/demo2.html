@@ -1,0 +1,131 @@
+<!doctype HTML>
+<html>
+  <!-- Diese Scripts laden das Framework für AR.js - NICHT LÖSCHEN! -->
+        <script src="https://aframe.io/releases/1.0.4/aframe.min.js"></script>
+        <script src="https://raw.githack.com/AR-js-org/AR.js/master/aframe/build/aframe-ar.js"></script>
+        <script src="https://raw.githack.com/donmccurdy/aframe-extras/master/dist/aframe-extras.loaders.min.js"></script>
+        <script src="https://raw.githack.com/AR-js-org/studio-backend/master/src/modules/marker/tools/gesture-detector.js"></script>
+        <script src="https://raw.githack.com/AR-js-org/studio-backend/master/src/modules/marker/tools/gesture-handler.js"></script>
+  <!-- Dieses Script ist für Bild-Marker -->
+        <script src="https://raw.githack.com/AR-js-org/AR.js/master/aframe/build/aframe-ar-nft.js"></script>
+  
+  <!-- Dieses Script ist die Vorbereitung für den Info-Button. Der Text bei "alert" kann angepasst werden. -->
+        <script>
+            window.onload = function () {
+            document
+            .querySelector(".say-hi-button")
+            .addEventListener("click", function () {
+                alert("Hier können Hinweise eingeblendet werden"); <!-- Text hier ändern -->
+                });
+            };
+        </script>
+  <!-- Hier wird der Button gestaltet -->              
+  <style>
+    .buttons {
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      width: 100%;
+      height: 5em;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      z-index: 10;
+    }
+
+    .say-hi-button {
+      padding: 0.25em;
+      border-radius: 4px;
+      border: none;
+      background: white;
+      color: black;
+      width: 4em;
+      height: 2em;
+    }
+  </style>
+  
+  <!-- Hier folgt der sichtbare Teil der Seite --> 
+  <body style='margin : 0px; overflow: hidden;'>
+    
+    <!-- Hier wird der Button eingefügt -> ist optional, wenn nicht gewünscht: 
+         die drei Zeichen am Ende der Zeile (- - >) hinter </div> verschieben: -->
+      <div class="buttons">
+         <button class="say-hi-button">Info</button>
+      </div>
+    
+ <!-- Hier wird die Szene eröffnet. matrixCodeType kann auch ein anderes System geändert werden -->
+    <a-scene embedded arjs="trackingMethod: best; debugUIEnabled: false; detectionMode: mono_and_matrix; matrixCodeType: 3x3;"        
+        vr-mode-ui="enabled: false"
+        gesture-detector
+        id="scene"
+    >
+ <!-- Hier startet jeweils die Suche nach einem Marker. 
+      Der gesuchte Wert ist bei value=" " eingegeben -->
+      <a-marker type="barcode" value="0">
+       <!-- pro Marker können mehrere Objekte geladen werden. 
+            Hier ein Beispiel mit einem .obj -->
+        <a-entity obj-model="obj: url(/SchS/RDZ/Modelle/000.obj); mtl: url(/SchS/RDZ/Modelle/000.mtl)"  
+                 scale="0.1 0.1 0.1"               
+                 rotation="0 0 0"
+                 class="clickable" 
+                 gesture-handler="minScale: 0.25; maxScale: 10" 
+        ></a-entity>     
+      </a-marker>         
+
+<!-- Hier kommt ein neuer Marker / neues Objekt: 
+     Hier ein Beispiel mit einem .glb --> 
+      <a-marker type="barcode" value="1">      
+        <a-entity gltf-model="url(/SchS/RDZ/Modelle/001.glb)" 
+                 rotation="0 0 90"
+                 scale="0.1 0.1 0.1"
+                 class="clickable" 
+                 gesture-handler="minScale: 0.25; maxScale: 10" 
+        ></a-entity>      
+      </a-marker>  
+
+<!-- Hier ein Beispiel mit einem Textfeld --> 
+      <a-marker type="barcode" value="2"> 
+       <a-entity
+          geometry="primitive: plane; height: 1; width: 1"
+          position="0 0 0"
+          rotation="-90 0 0"
+          material="color: green"
+          text="value: Zwei"
+       ></a-entity> 
+      </a-marker>  
+ 
+<!-- Hier ein Beispiel mit einem Bild --> 
+      <a-marker type="barcode" value="3"> 
+       <a-entity
+          geometry="primitive: plane; height: 1; width: 1"
+          position="0 0 0"
+          rotation="-90 0 0"
+          material="color: blue"
+          text="value: Drei"
+       ></a-entity> 
+      </a-marker>   
+            
+<!-- Hier ein Beispiel mit einem Video --> 
+      <a-marker type="barcode" value="4"> 
+          <a-video preload="metadata" src="https://jezgraggen.github.io/AR-Studio/assets/CoolTricks__aL29yNv_460sv_ZachKing.mp4" width="2" height="1.2" rotation="90 0 0">
+      </a-marker>  
+        
+<!-- Hier ein Beispiel mit einem Bildmarker --> 
+        <a-nft
+          type="nft"
+          url="https://jezgraggen.github.io/AR-Studio/assets/MarkerMoon"
+          smooth="true"
+          smoothCount="10"
+          smoothTolerance=".01"
+          smoothThreshold="5"
+        > <a-entity
+            <a-image src="https://jezgraggen.github.io/AR-Studio/assets/riff_mit_korallen.jpg" scale="1 1 1" position="0 0 0" rotation="90 0 180"></a-image>
+            <!--gltf-model="https://jezgraggen.github.io/AR-Studio/assets/asset.glb"-->
+          >>
+         </a-entity>
+        </a-nft>
+
+      <a-entity camera></a-entity>
+    </a-scene>
+  </body>
+</html>
