@@ -118,6 +118,12 @@
 <!-- Hier ein Beispiel mit einem Bild --> 
       <a-marker type="barcode" value="3"> 
     <a-image src="https://blogs.phsg.ch/rdz-kunstbauwerkraum/files/2022/04/kunstBAUwerkRAUM-gelb-scaled.jpg" position="0 0 0"></a-image>
+                <a-entity obj-model="obj: url(/SchS/RDZ/Modelle/000.obj); mtl: url(/SchS/RDZ/Modelle/000.mtl)"  
+                 scale="0.1 0.1 0.1"               
+                 rotation="90 0 0"
+                 class="clickable" 
+                 gesture-handler="minScale: 0.25; maxScale: 10" 
+        ></a-entity>    
       </a-marker>   
             
 <!-- Hier ein Beispiel mit einem Video --> 
