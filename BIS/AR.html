@@ -17,6 +17,25 @@
                 });
             };
         </script>
+  
+  AFRAME.registerComponent('vidhandler', {
+  init: function () {
+    this.toggle = false;
+    document.querySelector("#vid").pause(); //reference to the video
+  },
+  tick:function(){  
+   if(document.querySelector("a-marker").object3D.visible == true){
+     if(!this.toggle){
+       this.toggle = true;
+       document.querySelector("#vid").play();
+     }
+   }else{
+     this.toggle = false;
+     document.querySelector("#vid").pause();
+   }
+  }
+});
+  
   <!-- Hier wird der Button gestaltet -->              
   <style>
     .buttons {
@@ -117,11 +136,11 @@
       </a-marker>   -->
         
     <!-  <a-marker type="barcode" value="4"> 
-          <a-video src="/SchS/BIS/Test/Berlin.mov" width="2" height="1.2" rotation="90 0 180">
+          <a-video vidhandler src="/SchS/BIS/Test/Berlin.mov" width="2" height="1.2" rotation="90 0 180">
       </a-marker>  
         
       <a-marker type="barcode" value="3"> 
-          <a-video src="/SchS/BIS/Test/ParisZwei.mov" width="2" height="1.2" rotation="90 0 180">
+          <a-video vidhandler src="/SchS/BIS/Test/ParisZwei.mov" width="2" height="1.2" rotation="90 0 180">
       </a-marker>     
         <!--
        <a-marker type="barcode" value="5"> 
