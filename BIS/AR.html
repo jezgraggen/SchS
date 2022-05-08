@@ -64,6 +64,8 @@
  
   </style>
   
+  
+  
   <!-- Hier folgt der sichtbare Teil der Seite --> 
   <body style='margin : 0px; overflow: hidden;'>
     <!--  <div class="arjs-loader">
@@ -81,6 +83,14 @@
         gesture-detector
         id="scene"
     >
+      
+ <a-assets>
+
+    <video id="Paris" src="/SchS/BIS/Test/ParisZwei.mov"></video>
+    <video id="Berlin" src="/SchS/BIS/Test/Berlin.mov"></video>
+        
+  </a-assets>
+      
  <!-- Hier startet jeweils die Suche nach einem Marker. 
       Der gesuchte Wert ist bei value=" " eingegeben 
       <a-marker type="barcode" value="0">
@@ -137,13 +147,18 @@
       </a-marker>   -->
         
     <!-  <a-marker type="barcode" value="4"> 
-          <a-video vidhandler src="/SchS/BIS/Test/Berlin.mov" width="2" height="1.2" rotation="90 0 180">
+          <a-video vidhandler src="#Berlin.mov" width="2" height="1.2" rotation="90 0 180">
       </a-marker>  
         
       <a-marker type="barcode" value="3"> 
           <a-video vidhandler src="/SchS/BIS/Test/ParisZwei.mov" width="2" height="1.2" rotation="90 0 180">
       </a-marker>     
+        
+      <a-marker type="barcode" value="2"> 
+          <a-entity geometry="primitive: plane" material="src: #Berlin"></a-entity>
+      </a-marker>   
         <!--
+<a-entity geometry="primitive: plane" material="src: #kentucky-derby"></a-entity>
        <a-marker type="barcode" value="5"> 
        <a-entity
           geometry="primitive: plane; height: 1; width: 1"
