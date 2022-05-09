@@ -53,15 +53,21 @@ loop="true"src="assets\textures\alpha.webm">
     </video>     
 </a-assets> -->
   
+   <a-scene embedded arjs="trackingMethod: best; debugUIEnabled: false; detectionMode: mono_and_matrix; matrixCodeType: 3x3;"        
+        vr-mode-ui="enabled: false"
+        gesture-detector
+        id="scene"
+    >
+     
   <a-assets>
    <video id="one" src="SchS/BIS/Test/Berlin.mov">
    <video id="two" src="SchS/BIS/Test/ParisZwei.mov">
 </a-assets>
      
-<a-marker preset="hiro" vidhandler="video: #one">
+<a-marker type="barcode" value="1" vidhandler="video: #one">
     <a-box material='src: #one'></a-box>
 </a-marker>
-<a-marker preset="kanji" vidhandler="video: #two">
+<a-marker type="barcode" value="2"> vidhandler="video: #two">
     <a-box material='src: #two'></a-box>
 </a-marker>   
 
