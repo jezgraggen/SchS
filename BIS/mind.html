@@ -12,6 +12,7 @@
       <a-assets>
         <a-asset-item id="Paris" src="/SchS/BIS/Test/ParisZwei.mov"></a-asset-item>
         <a-asset-item id="Berlin" src="/SchS/BIS/Test/Berlin.mov"></a-asset-item>
+        <a-asset-item id="000" src="/SchS/AR/modelle/000.glb"></a-asset-item>
       </a-assets>
 
       <a-camera position="0 0 0" look-controls="enabled: false"></a-camera>
@@ -20,7 +21,12 @@
         <a-video preload="none" src="#Berlin" rotation="0 0 0">
           <!--        <a-video preload="none" src="#Berlin" rotation="90 0 180"> -->
       </a-entity>
-          
+        
+      <a-entity mindar-image-target="targetIndex: 2">
+       <!-- <a-video preload="none" src="#Paris" rotation="0 0 0"> -->
+        <a-gltf-model rotation="0 0 0 " position="0 -0.25 0" scale="0.05 0.05 0.05" src="#000" animation-mixer> 
+      </a-entity>
+        
       <a-entity mindar-image-target="targetIndex: 4">
         <a-video preload="none" src="#Paris" rotation="0 0 0">
         <!-- <a-gltf-model rotation="0 0 0 " position="0 -0.25 0" scale="0.05 0.05 0.05" src="#Berlin" animation-mixer> -->
