@@ -1,13 +1,21 @@
+
+<!DOCTYPE html>
 <html>
-  <head>
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <script src="https://cdn.jsdelivr.net/gh/hiukim/mind-ar-js@1.1.4/dist/mindar-image.prod.js"></script>
-    <script src="https://aframe.io/releases/1.2.0/aframe.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/gh/donmccurdy/aframe-extras@v6.1.1/dist/aframe-extras.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/gh/hiukim/mind-ar-js@1.1.4/dist/mindar-image-aframe.prod.js"></script>
-  </head>
   
-    <style>
+  <head>
+
+      <meta charset="utf-8">
+      <title>Wo ist die Kokosnuss?</title>
+      <meta name="description" content="Wo ist die Kokosnuss?">
+
+      <script src="https://aframe.io/releases/1.0.4/aframe.min.js"></script>
+      <script src="/SchS/BIS/js/play-on-click.js"></script>
+      <script src="/SchS/BIS/js/hide-on-play.js"></script>
+
+  </head>
+        
+  
+  <style>
     .buttons {
       position: absolute;
       bottom: 0;
@@ -29,23 +37,26 @@
       width: 4em;
       height: 2em;
     }
-    
- 
   </style>
   
-  <body>
-          <div class="buttons">
-         <button onclick="window.location='/SchS/BIS/Ende.html';"> The End! </button>
-      </div>
-    <a-scene 
-             mindar-image="filterMinCF:0.1; filterBeta: 10; imageTargetSrc: /SchS/BIS/assets/K.mind;" color-space="sRGB" renderer="colorManagement: true, physicallyCorrectLights" vr-mode-ui="enabled: false" device-orientation-permission-ui="enabled: false">
+  
+<body style='margin : 0px; overflow: hidden;'>
 
-      <a-camera position="0 0 0" look-controls="enabled: false"></a-camera>
-
-      <a-entity mindar-image-target="targetIndex: 0">
-             <a-video preload="auto" src="/SchS/BIS/assets/WoKokosnuss.mov" width="1" height="0.75" rotation="0 0 0">
-      </a-entity>
         
-    </a-scene>
-  </body>
+  <a-scene>
+    <a-assets>
+      <video id="Kok" preload="auto" src="/SchS/BIS/assets/WoKokosnuss.mov" width="160" height="90" autoplay loop="true" crossOrigin="anonymous"></video>
+    </a-assets>
+
+    <a-entity material="shader: flat; src: #Kok" geometry="primitive: plane; width: 160; height: 90;" position="0 0 -50" rotation="0 0 0" play-on-click visible="false"></a-entity>
+
+    <a-camera>
+      <a-entity position="0 0 -1.5" text="align: center;
+                  width: 6;
+                  wrapCount: 100;
+                  color: black;
+                  value: Auf nach Paris!" hide-on-play="#Kok"></a-entity>
+    </a-camera>
+  </a-scene>
+</body>
 </html>
