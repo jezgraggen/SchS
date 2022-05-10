@@ -1,0 +1,36 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+
+<meta http-equiv="origin-trial" data-feature="WebVR (For Chrome M59+)" data-expires="2017-07-28" content="ArFv1ZeTwzkhjNE00uAE+XtiQB41fwqG/TqlFMLrepd9sforQSvQE/tgfIbUMYNuNre4QR1k4/z8xp2mV3dbhwwAAABeeyJvcmlnaW4iOiJodHRwczovL2FmcmFtZS5pbzo0NDMiLCJmZWF0dXJlIjoiV2ViVlIxLjEiLCJleHBpcnkiOjE1MDEyMTcwMDIsImlzU3ViZG9tYWluIjp0cnVlfQ==">
+<meta charset="utf-8">
+<title>Video</title>
+<meta name="description" content="Video - A-Frame">
+        <script src="https://aframe.io/releases/1.0.4/aframe.min.js"></script>
+<script src="/SchS/BIS/js/play-on-click.js"></script>
+<script src="/SchS/BIS/js/hide-on-play.js"></script>
+</head>
+<body>
+<a-scene>
+<a-assets>
+<video id="Rom" preload="auto" src="/SchS/BIS/assets/PrR.mov" width="160" height="90" autoplay loop="true" crossOrigin="anonymous"></video>
+<!-- <video id="videoFireworks" preload="auto" src="https://cdn.aframe.io/videos/fireworks.mp4" width="160" height="90" autoplay loop="true" crossOrigin="anonymous" muted></video> -->
+</a-assets>
+
+<a-entity material="shader: flat; src: #Rom" geometry="primitive: plane; width: 160; height: 90;" position="0 60 -250" rotation="0 35 0" play-on-click visible="false">
+</a-entity>
+
+<a-entity material="shader: flat; src: #videoFireworks" geometry="primitive: plane; width: 160; height: 90" position="0 -60 -200" rotation="0 -35 0" play-on-click visible="false">
+</a-entity>
+<a-camera>
+<a-entity position="0 0 -1.5" text="align: center;
+                width: 6;
+                wrapCount: 100;
+                color: black;
+                value: Click or tap to start video" hide-on-play="#videoFireworks">
+</a-entity>
+</a-camera>
+</a-scene>
+</body>
+</html>
