@@ -35,15 +35,15 @@
   
   <body>
           <div class="buttons">
-         <button onclick="window.location='/SchS/BIS/PrR.html';">nach Rom</button>
+         <button onclick="window.location='/SchS/BIS/RBE.html';">nach Bern</button>
       </div>
     <a-scene 
-             mindar-image="filterMinCF:0.1; filterBeta: 10; imageTargetSrc: /SchS/BIS/assets/Pr.mind;" color-space="sRGB" renderer="colorManagement: true, physicallyCorrectLights" vr-mode-ui="enabled: false" device-orientation-permission-ui="enabled: false">
+             mindar-image="filterMinCF:0.1; filterBeta: 10; imageTargetSrc: /SchS/BIS/assets/R.mind;" color-space="sRGB" renderer="colorManagement: true, physicallyCorrectLights" vr-mode-ui="enabled: false" device-orientation-permission-ui="enabled: false">
 
       <a-camera position="0 0 0" look-controls="enabled: false"></a-camera>
 
       <a-entity mindar-image-target="targetIndex: 0">
-             <a-video preload="auto" src="/SchS/BIS/assets/BPr.mov" width="2" height="1.5" rotation="0 0 0">
+             <a-video preload="auto" src="/SchS/BIS/assets/PrR.mov" width="2" height="1.5" rotation="0 0 0">
       </a-entity>
         
     </a-scene>
