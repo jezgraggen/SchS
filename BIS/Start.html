@@ -1,0 +1,39 @@
+<html>
+  <head>
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <script src="https://cdn.jsdelivr.net/gh/hiukim/mind-ar-js@1.1.4/dist/mindar-image.prod.js"></script>
+    <script src="https://aframe.io/releases/1.2.0/aframe.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/gh/donmccurdy/aframe-extras@v6.1.1/dist/aframe-extras.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/gh/hiukim/mind-ar-js@1.1.4/dist/mindar-image-aframe.prod.js"></script>
+  </head>
+  
+  <body>
+    <a-scene 
+             mindar-image="filterMinCF:0.1; filterBeta: 10; imageTargetSrc: /SchS/BIS/targets.mind;" color-space="sRGB" renderer="colorManagement: true, physicallyCorrectLights" vr-mode-ui="enabled: false" device-orientation-permission-ui="enabled: false">
+      <a-assets>
+       <!-- <a-asset-item id="Paris" src="/SchS/BIS/Test/ParisZwei.mov"></a-asset-item> 
+        <a-asset-item id="Berlin" src="/SchS/BIS/Test/Berlin.mov"></a-asset-item>
+        <a-asset-item id="000" src="/SchS/AR/modelle/000.glb"></a-asset-item> -->
+      </a-assets>
+
+      <a-camera position="0 0 0" look-controls="enabled: false"></a-camera>
+
+      <a-entity mindar-image-target="targetIndex: 0">
+        <a-video preload="metadata" src="#Berlin" rotation="0 0 0">
+          <!--        <a-video preload="none" src="#Berlin" rotation="90 0 180"> -->
+      </a-entity>
+        
+      <a-entity mindar-image-target="targetIndex: 2">
+       <!-- <a-video preload="metadata" autoplay="false" loop="false" src="#Paris" rotation="0 0 0"> -->
+        <a-gltf-model rotation="0 0 0 " position="0 -0.25 0" scale="0.05 0.05 0.05" src="#000" animation-mixer> 
+      </a-entity>
+        
+      <a-entity mindar-image-target="targetIndex: 4">
+          <!--      <a-video preload="none" src="#Paris" rotation="0 0 0"> -->
+             <a-video preload="metadata" src="/SchS/BIS/Test/ParisZwei.mov" width="2" height="1.5" rotation="0 0 0">
+        <!-- <a-gltf-model rotation="0 0 0 " position="0 -0.25 0" scale="0.05 0.05 0.05" src="#Berlin" animation-mixer> -->
+      </a-entity>
+        
+    </a-scene>
+  </body>
+</html>
