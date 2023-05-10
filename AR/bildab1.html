@@ -1,12 +1,16 @@
 <!doctype HTML>
 <html>
-        <script src="https://aframe.io/releases/1.0.4/aframe.min.js"></script>
+    <!--    <script src="https://aframe.io/releases/1.0.4/aframe.min.js"></script>
         <script src="https://raw.githack.com/AR-js-org/AR.js/master/aframe/build/aframe-ar.js"></script>
         <script src="https://raw.githack.com/donmccurdy/aframe-extras/master/dist/aframe-extras.loaders.min.js"></script>
         <script src="https://raw.githack.com/AR-js-org/studio-backend/master/src/modules/marker/tools/gesture-detector.js"></script>
-        <script src="https://raw.githack.com/AR-js-org/studio-backend/master/src/modules/marker/tools/gesture-handler.js"></script>
-<!--<script src="https://makerspace-giessen.de/objects/aframe-v1.0.4.min.js"></script>
-<script src="https://makerspace-giessen.de/objects/aframe-ar.min.js"></script> -->
+        <script src="https://raw.githack.com/AR-js-org/studio-backend/master/src/modules/marker/tools/gesture-handler.js"></script> -->
+        
+        <script src="https://cdn.jsdelivr.net/gh/aframevr/aframe@1c2407b26c61958baa93967b5412487cd94b290b/dist/aframe-master.min.js"></script> 
+        <script src="https://raw.githack.com/AR-js-org/AR.js/master/aframe/build/aframe-ar-nft.js"></script>    
+        
+   <!--     <script src="https://makerspace-giessen.de/objects/aframe-v1.0.4.min.js"></script>
+        <script src="https://makerspace-giessen.de/objects/aframe-ar.min.js"></script> -->
   <body style='margin : 0px; overflow: hidden;'>
     <a-scene embedded arjs="trackingMethod: best; debugUIEnabled: false; detectionMode: mono_and_matrix; matrixCodeType: 4x4_bch_13_9_3;">
          
@@ -16,12 +20,89 @@
       <a-entity light="type: directional; color: #FFF; intensity: 0.6" position="1 1 1"></a-entity>  
       <a-entity light="type: directional; color: #FFF; intensity: 0.6" position="1 -1 1"></a-entity> 
       <a-entity light="type: directional; color: #FFF; intensity: 0.6" position="-1 -1 1"></a-entity>    
-   -->  
+    
                
       <a-marker type="barcode" value="0">
-       <!--<a-entity gltf-model="url(https://jezgraggen.github.io/AR-Studio/assets/asset.glb)" scale="1 1 1"></a-entity> -->
-       <a-entity obj-model="obj: url(https://jezgraggen.github.io/SchS/AR/tinker.obj); mtl: url(https://jezgraggen.github.io/SchS/AR/obj.mtl)" scale="0.5 0.5 0.5"></a-entity> -->
-      </a-marker>  
+       <!--<a-entity gltf-model="url(https://jezgraggen.github.io/AR-Studio/assets/asset.glb)" scale="1 1 1"></a-entity>
+       <a-entity obj-model="obj: url(https://jezgraggen.github.io/SchS/AR/tinker.obj); mtl: url(https://jezgraggen.github.io/SchS/AR/obj.mtl)" scale="0.5 0.5 0.5"></a-entity>
+      </a-marker> 
+          
+  -->
+            
+            
+  <!-- import aframe and then ar.js with image tracking / location based features -->
+
+
+<!-- style for the loader -->
+<style>
+  .arjs-loader {
+    height: 100%;
+    width: 100%;
+    position: absolute;
+    top: 0;
+    left: 0;
+    background-color: rgba(0, 0, 0, 0.8);
+    z-index: 9999;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .arjs-loader div {
+    text-align: center;
+    font-size: 1.25em;
+    color: white;
+  }
+</style>
+
+<body style="margin : 0px; overflow: hidden;">
+  <!-- minimal loader shown until image descriptors are loaded. Loading may take a while according to the device computational power -->
+  <div class="arjs-loader">
+    <div>Loading, please wait...</div>
+  </div>
+
+  <!-- a-frame scene -->
+  <a-scene
+    vr-mode-ui="enabled: false;"
+    renderer="logarithmicDepthBuffer: true;"
+    embedded
+    arjs="trackingMethod: best; sourceType: webcam;debugUIEnabled: false;"
+  >
+    <!-- a-nft is the anchor that defines an Image Tracking entity -->
+    <!-- on 'url' use the path to the Image Descriptors created before. -->
+    <!-- the path should end with the name without the extension e.g. if file is 'pinball.fset' the path should end with 'pinball' 
+    <a-nft
+      type="nft"
+      url="<path-to-your-image-descriptors>"
+      smooth="true"
+      smoothCount="10"
+      smoothTolerance=".01"
+      smoothThreshold="5"
+    >
+      <!-- as a child of the a-nft entity, you can define the content to show. here's a GLTF model entity 
+      <a-entity
+        gltf-model="<path-to-your-model>"
+        scale="5 5 5"
+        position="50 150 0"
+      >
+      </a-entity>
+    </a-nft>
+    <!-- static camera that moves according to the device movemenents
+    <a-entity camera></a-entity>
+  </a-scene>
+</body>
+            -->
+        <a-nft
+          type="nft"
+          url="https://jezgraggen.github.io/SchS/microbit"
+          smooth="true"
+          smoothCount="10"
+          smoothTolerance="0.01"
+          smoothThreshold="5"
+        > 
+            <a-image src="https://jezgraggen.github.io/AR-Studio/assets/riff_mit_korallen.jpg" scale="1 1 1" position="0 0 0" rotation="90 0 180"></a-image>
+         <!--   <a-entity gltf-model="https://jezgraggen.github.io/AR-Studio/assets/asset.glb"></a-entity> -->
+        </a-nft>-->
       <a-entity camera></a-entity>
     </a-scene>
   </body>
