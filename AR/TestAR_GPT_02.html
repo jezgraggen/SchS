@@ -1,0 +1,97 @@
+<!doctype HTML>
+<html>
+    <!-- Einbindung von AR.js und A-Frame -->
+    <script src="https://aframe.io/releases/1.0.4/aframe.min.js"></script>
+    <script src="https://raw.githack.com/AR-js-org/AR.js/master/aframe/build/aframe-ar.js"></script>
+
+    <!-- Dynamisches Erzeugen von Markern und Dateiladen -->
+    <script>
+        // Anzahl der Marker, die dynamisch erzeugt werden sollen
+        const numMarkers = 300; // Du kannst diese Zahl anpassen
+
+        // Funktion, um Marker dynamisch zu erzeugen
+        function createMarkers() {
+            const scene = document.getElementById('scene'); // Szene, in die die Marker eingefügt werden
+            for (let i = 0; i < numMarkers; i++) {
+                // Erzeuge ein neues Marker-Element
+                const marker = document.createElement('a-marker');
+                marker.setAttribute('type', 'barcode');
+                marker.setAttribute('value', i); // Weist jedem Marker seinen Wert zu
+                marker.setAttribute('dynamic-file-loader', ''); // Wendet die dynamische Datei-Lade-Komponente an
+                scene.appendChild(marker); // Füge den Marker zur Szene hinzu
+            }
+        }
+
+        // Sobald die Seite geladen ist, rufe die Funktion auf
+        window.onload = function () {
+            createMarkers();
+        };
+
+        AFRAME.registerComponent('dynamic-file-loader', {
+            init: function () {
+                var marker = this.el; // Das aktuelle Marker-Element
+                var markerValue = marker.getAttribute('value'); // Wert des Markers
+
+                // Liste von möglichen Dateitypen in der Reihenfolge der Priorität
+                var possibleFiles = [
+                    `/kBwR/modelle/${("000" + markerValue).slice(-3)}.glb`,
+                    `/kBwR/modelle/${("000" + markerValue).slice(-3)}.obj`,
+                    `/kBwR/images/${("000" + markerValue).slice(-3)}.jpg`,
+                    `/kBwR/images/${("000" + markerValue).slice(-3)}.png`,
+                    `/kBwR/videos/${("000" + markerValue).slice(-3)}.mp4`
+                ];
+
+                // Funktion zum Überprüfen, ob eine Datei existiert
+                function fileExists(url, callback) {
+                    var xhr = new XMLHttpRequest();
+                    xhr.open('HEAD', url, true);
+                    xhr.onreadystatechange = function () {
+                        if (xhr.readyState === 4) {
+                            callback(xhr.status !== 404); // Datei existiert, wenn kein 404 Fehler
+                        }
+                    };
+                    xhr.send();
+                }
+
+                // Dynamisch die Datei basierend auf dem Marker-Wert laden
+                possibleFiles.forEach(function (fileUrl) {
+                    fileExists(fileUrl, function (exists) {
+                        if (exists) {
+                            // Prüfe den Dateityp und lade das entsprechende Element
+                            if (fileUrl.endsWith('.glb') || fileUrl.endsWith('.obj')) {
+                                // 3D-Modell laden
+                                marker.innerHTML = `
+                                    <a-entity obj-model="obj: url(${fileUrl})"
+                                              scale="0.1 0.1 0.1"
+                                              rotation="-90 0 0"
+                                              gesture-handler="minScale: 0.25; maxScale: 10">
+                                    </a-entity>
+                                `;
+                            } else if (fileUrl.endsWith('.jpg') || fileUrl.endsWith('.png')) {
+                                // Bild laden
+                                marker.innerHTML = `
+                                    <a-plane src="${fileUrl}" height="1" width="1" rotation="-90 0 0"></a-plane>
+                                `;
+                            } else if (fileUrl.endsWith('.mp4')) {
+                                // Video laden
+                                marker.innerHTML = `
+                                    <a-video src="${fileUrl}" width="1" height="0.5" autoplay loop="true"></a-video>
+                                `;
+                            }
+                            return; // Sobald eine gültige Datei gefunden wurde, nicht weiter suchen
+                        }
+                    });
+                });
+            }
+        });
+    </script>
+
+    <body style="margin: 0px; overflow: hidden;">
+        <a-scene embedded arjs="trackingMethod: best; debugUIEnabled: false; detectionMode: mono_and_matrix; matrixCodeType: 3x3;" id="scene">
+            <!-- Dynamisch erzeugte Marker werden hier hinzugefügt -->
+            
+            <!-- Kamera für die Szene -->
+            <a-entity camera></a-entity>
+        </a-scene>
+    </body>
+</html>
