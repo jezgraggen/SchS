@@ -12,22 +12,22 @@
 
         <script>
             // Anzahl der Marker
-            const numMarkers = 30;
+            const numMarkers = 300;
 
             // Funktion, um dynamische Marker und Inhalte zu erzeugen
             function createMarkers() {
                 const arApp = new SimpleAR({
                     container: document.getElementById('ar-container'),
                     trackingBackend: 'aruco',
-                    debug: true // Du kannst dies auf 'false' setzen, wenn kein Debugging nötig ist
+                    debug: false // Du kannst dies auf 'false' setzen, wenn kein Debugging nötig ist
                 });
 
                 // Marker und Inhalte dynamisch hinzufügen
                 for (let i = 0; i < numMarkers; i++) {
                     const markerId = i;
-                    const objUrl = `/kBwR/modelle/${("000" + i).slice(-3)}.obj`;
-                    const imgUrl = `/kBwR/images/${("000" + i).slice(-3)}.jpg`;
-                    const videoUrl = `/kBwR/videos/${("000" + i).slice(-3)}.mp4`;
+                    const objUrl = `/SchS/AR/modelle/${("000" + i).slice(-3)}.obj`;
+                    const imgUrl = `/SchS/AR/images/${("000" + i).slice(-3)}.jpg`;
+                    const videoUrl = `/SchS/AR/videos/${("000" + i).slice(-3)}.mp4`;
 
                     // Lade das 3D-Modell oder Bild/Video basierend auf dem Marker
                     arApp.addMarker(markerId, function (marker) {
