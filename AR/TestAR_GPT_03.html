@@ -1,0 +1,111 @@
+<!doctype HTML>
+<html>
+    <!-- Einbindung von AR.js und A-Frame -->
+    <script src="https://aframe.io/releases/1.0.4/aframe.min.js"></script>
+    <script src="https://raw.githack.com/AR-js-org/AR.js/master/aframe/build/aframe-ar.js"></script>
+
+    <script>
+        // Anzahl der Marker
+        const numMarkers = 300;
+
+        // Funktion, um Marker dynamisch zu erzeugen
+        function createMarkers() {
+            const scene = document.getElementById('scene');
+            for (let i = 0; i < numMarkers; i++) {
+                const marker = document.createElement('a-marker');
+                marker.setAttribute('type', 'barcode');
+                marker.setAttribute('value', i);
+                marker.setAttribute('dynamic-file-loader', '');
+                scene.appendChild(marker);
+            }
+        }
+
+        window.onload = function () {
+            // Erzeuge Marker nach dem Laden der Seite
+            createMarkers(); 
+        };
+
+        // Dynamische Komponente für das Laden von Dateien (Modelle, Bilder, Videos)
+        AFRAME.registerComponent('dynamic-file-loader', {
+            init: function () {
+                var marker = this.el;
+                var markerValue = marker.getAttribute('value');
+
+                var possibleFiles = [
+                    `/SchS/AR/modelle/${("000" + markerValue).slice(-3)}.glb`,
+                    `/SchS/AR/modelle/${("000" + markerValue).slice(-3)}.obj`,
+                    `/SchS/AR/modelle/${("000" + markerValue).slice(-3)}.jpg`,
+                    `/SchS/AR/modelle/${("000" + markerValue).slice(-3)}.png`,
+                    `/SchS/AR/modelle/${("000" + markerValue).slice(-3)}.mp4`
+                ];
+
+                function fileExists(url, callback) {
+                    var xhr = new XMLHttpRequest();
+                    xhr.open('HEAD', url, true);
+                    xhr.onreadystatechange = function () {
+                        if (xhr.readyState === 4) {
+                            callback(xhr.status !== 404);
+                        }
+                    };
+                    xhr.send();
+                }
+
+                possibleFiles.forEach(function (fileUrl) {
+                    fileExists(fileUrl, function (exists) {
+                        if (exists) {
+                            if (fileUrl.endsWith('.glb') || fileUrl.endsWith('.obj')) {
+                                marker.innerHTML = `
+                                    <a-entity obj-model="obj: url(${fileUrl})"
+                                              scale="0.1 0.1 0.1"
+                                              rotation="-90 0 0"
+                                              gesture-handler="minScale: 0.25; maxScale: 10">
+                                    </a-entity>
+                                `;
+                            } else if (fileUrl.endsWith('.jpg') || fileUrl.endsWith('.png')) {
+                                loadImage(fileUrl, function (width, height) {
+                                    const aspectRatio = width / height;
+                                    const planeWidth = 1;
+                                    const planeHeight = planeWidth / aspectRatio;
+
+                                    marker.innerHTML = `
+                                        <a-plane src="${fileUrl}" width="${planeWidth}" height="${planeHeight}" rotation="-90 0 0"></a-plane>
+                                    `;
+                                });
+                            } else if (fileUrl.endsWith('.mp4')) {
+                                // Korrekte Videoeinbindung mit Rotation und Autoplay
+                                marker.innerHTML = `
+                                    <a-video 
+                                        src="${fileUrl}" 
+                                        width="1" 
+                                        height="0.5" 
+                                        autoplay="true" 
+                                        loop="true"
+                                        rotation="-90 0 0" <!-- Lege das Video flach auf den Marker -->
+                                        preload="auto">
+                                    </a-video>
+                                `;
+                            }
+                            return;
+                        }
+                    });
+                });
+
+                // Funktion, um die Bildabmessungen zu laden und das Seitenverhältnis zu berechnen
+                function loadImage(url, callback) {
+                    var img = new Image();
+                    img.onload = function () {
+                        callback(img.width, img.height);
+                    };
+                    img.src = url;
+                }
+            }
+        });
+    </script>
+
+    <body style="margin: 0px; overflow: hidden;">
+        <a-scene embedded arjs="sourceType: webcam; trackingMethod: best; debugUIEnabled: false; detectionMode: mono_and_matrix; matrixCodeType: 3x3;" id="scene">
+            <!-- Kamera für die Szene -->
+            <a-entity camera></a-entity>
+        </a-scene>
+    </body>
+</html>
