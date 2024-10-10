@@ -1,0 +1,42 @@
+<!doctype HTML>
+<html>
+    <!-- Einbindung von AR.js und A-Frame -->
+    <script src="https://aframe.io/releases/1.0.4/aframe.min.js"></script>
+    <script src="https://raw.githack.com/AR-js-org/AR.js/master/aframe/build/aframe-ar.js"></script>
+
+    <!-- Dynamisches Erzeugen von Markern und Dateiladen -->
+    <script>
+        const numMarkers = 30; // Du kannst diese Zahl anpassen
+
+        function createMarkers() {
+            const scene = document.getElementById('scene');
+            for (let i = 0; i < numMarkers; i++) {
+                const marker = document.createElement('a-marker');
+                marker.setAttribute('type', 'barcode');
+                marker.setAttribute('value', i);
+                marker.setAttribute('dynamic-file-loader', '');
+                scene.appendChild(marker);
+            }
+        }
+
+        window.onload = function () {
+            createMarkers(); // Erzeuge Marker nach dem Laden der Seite
+        };
+
+        AFRAME.registerComponent('dynamic-file-loader', {
+            init: function () {
+                var marker = this.el;
+                var markerValue = marker.getAttribute('value');
+
+                var possibleFiles = [
+                    `/kBwR/modelle/${("000" + markerValue).slice(-3)}.glb`,
+                    `/kBwR/modelle/${("000" + markerValue).slice(-3)}.obj`,
+                    `/kBwR/images/${("000" + markerValue).slice(-3)}.jpg`,
+                    `/kBwR/images/${("000" + markerValue).slice(-3)}.png`,
+                    `/kBwR/videos/${("000" + markerValue).slice(-3)}.mp4`
+                ];
+
+                function fileExists(url, callback) {
+                    var xhr = new XMLHttpRequest();
+                    xhr.open('HEAD', url, true);
+                    xhr.onreadystatechange = function ()
