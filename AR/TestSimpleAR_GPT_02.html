@@ -7,7 +7,7 @@
     <!-- Dynamisches Erzeugen von Markern und Dateiladen -->
     <script>
         // Anzahl der Marker
-        const numMarkers = 30;
+        const numMarkers = 300;
 
         // Funktion, um Marker dynamisch zu erzeugen
         function createMarkers() {
@@ -33,11 +33,11 @@
                 var markerValue = marker.getAttribute('value');
 
                 var possibleFiles = [
-                    `/kBwR/modelle/${("000" + markerValue).slice(-3)}.glb`,
-                    `/kBwR/modelle/${("000" + markerValue).slice(-3)}.obj`,
-                    `/kBwR/images/${("000" + markerValue).slice(-3)}.jpg`,
-                    `/kBwR/images/${("000" + markerValue).slice(-3)}.png`,
-                    `/kBwR/videos/${("000" + markerValue).slice(-3)}.mp4`
+                    `/SchS/AR/modelle/${("000" + markerValue).slice(-3)}.glb`,
+                    `/SchS/AR/modelle/${("000" + markerValue).slice(-3)}.obj`,
+                    `/SchS/AR/images/${("000" + markerValue).slice(-3)}.jpg`,
+                    `/SchS/AR/images/${("000" + markerValue).slice(-3)}.png`,
+                    `/SchS/AR/videos/${("000" + markerValue).slice(-3)}.mp4`
                 ];
 
                 function fileExists(url, callback) {
