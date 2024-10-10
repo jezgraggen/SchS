@@ -1,0 +1,75 @@
+<!doctype HTML>
+<html>
+    <head>
+        <title>Simple AR Example</title>
+        <!-- Simple AR script einbinden -->
+        <script src="https://cdn.jsdelivr.net/gh/schteppe/simple-ar/dist/simple-ar.js"></script>
+    </head>
+
+    <body style="margin: 0px; overflow: hidden;">
+        <!-- AR-Bereich -->
+        <div id="ar-container" style="position: relative; width: 100%; height: 100vh;"></div>
+
+        <script>
+            // Anzahl der Marker
+            const numMarkers = 30;
+
+            // Funktion, um dynamische Marker und Inhalte zu erzeugen
+            function createMarkers() {
+                const arApp = new SimpleAR({
+                    container: document.getElementById('ar-container'),
+                    trackingBackend: 'aruco',
+                    debug: true // Du kannst dies auf 'false' setzen, wenn kein Debugging nötig ist
+                });
+
+                // Marker und Inhalte dynamisch hinzufügen
+                for (let i = 0; i < numMarkers; i++) {
+                    const markerId = i;
+                    const objUrl = `/kBwR/modelle/${("000" + i).slice(-3)}.obj`;
+                    const imgUrl = `/kBwR/images/${("000" + i).slice(-3)}.jpg`;
+                    const videoUrl = `/kBwR/videos/${("000" + i).slice(-3)}.mp4`;
+
+                    // Lade das 3D-Modell oder Bild/Video basierend auf dem Marker
+                    arApp.addMarker(markerId, function (marker) {
+                        if (fileExists(objUrl)) {
+                            marker.addModel({
+                                path: objUrl,
+                                scale: [0.1, 0.1, 0.1],
+                                rotation: [-90, 0, 0]
+                            });
+                        } else if (fileExists(imgUrl)) {
+                            marker.addImage({
+                                path: imgUrl,
+                                width: 1,
+                                height: 1
+                            });
+                        } else if (fileExists(videoUrl)) {
+                            marker.addVideo({
+                                path: videoUrl,
+                                autoplay: true,
+                                loop: true,
+                                width: 1,
+                                height: 0.5
+                            });
+                        }
+                    });
+                }
+
+                // Funktion zur Überprüfung, ob die Datei existiert
+                function fileExists(url) {
+                    const xhr = new XMLHttpRequest();
+                    xhr.open('HEAD', url, false); // Synchroner Request
+                    xhr.send();
+                    return xhr.status !== 404;
+                }
+
+                arApp.start(); // Starte die AR-Anwendung
+            }
+
+            // Erstelle die Marker nach dem Laden der Seite
+            window.onload = function () {
+                createMarkers();
+            };
+        </script>
+    </body>
+</html>
